@@ -8,6 +8,7 @@ import com.qcp.common_design.dialog.elegant.ElegantDialog
 import com.qcp.common_design.dialog.elegant.background
 import com.qcp.common_design.dialog.elegant.body
 import com.qcp.common_design.dialog.elegant.icon
+import com.qcp.common_design.dialog.elegant.onClose
 import com.qcp.common_design.dialog.elegant.onNegative
 import com.qcp.common_design.dialog.elegant.onPositive
 import com.qcp.common_design.dialog.elegant.position
@@ -26,12 +27,14 @@ class MainActivity : AppCompatActivity() {
             ElegantDialog.build(this)
                 .title(title)
                 .body(body)
+                .onClose()
         }
         second.setOnClickListener {
             ElegantDialog.build(this)
                 .title(title)
                 .body(body)
                 .icon(com.qcp.common_design.R.drawable.ic_congrts)
+                .onClose()
         }
         third.setOnClickListener {
             ElegantDialog.build(this)
@@ -41,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                 .onPositive(goToMyAccount) {
                     Log.d("TAG", "positive ")
                 }
+                .onClose()
         }
         fourth.setOnClickListener {
             ElegantDialog.build(this)
@@ -53,6 +57,7 @@ class MainActivity : AppCompatActivity() {
                 .onNegative(cancel) {
                     Log.d("TAG", "negative ")
                 }
+                .onClose()
         }
         fifth.setOnClickListener {
             ElegantDialog.build(this)
@@ -61,6 +66,7 @@ class MainActivity : AppCompatActivity() {
                 .onPositive(goToMyAccount) {
                     Log.d("TAG", "positive ")
                 }
+                .onClose()
         }
         sixth.setOnClickListener {
             ElegantDialog.build(this)
@@ -72,6 +78,7 @@ class MainActivity : AppCompatActivity() {
                 .onNegative(cancel) {
                     Log.d("TAG", "negative ")
                 }
+                .onClose()
         }
         seventh.setOnClickListener {
             ElegantDialog.build(this)
@@ -98,6 +105,9 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     Log.d("TAG", "negative ")
                 }
+                .onClose(
+                    buttonColor = ContextCompat.getColor(this, android.R.color.white)
+                )
         }
         eighth.setOnClickListener {
             ElegantDialog.build(this)
@@ -118,6 +128,9 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     Log.d("TAG", "positive ")
                 }
+                .onClose(
+                    buttonColor = ContextCompat.getColor(this, android.R.color.white)
+                )
         }
         nine.setOnClickListener {
             ElegantDialog.build(this)
@@ -139,6 +152,9 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     Log.d("TAG", "positive ")
                 }
+                .onClose(
+                    buttonColor = ContextCompat.getColor(this, android.R.color.white)
+                )
         }
     }
 }

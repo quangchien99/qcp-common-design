@@ -1,6 +1,7 @@
 package com.qcp.common_design.dialog.elegant
 
 import android.app.Activity
+import android.graphics.PorterDuff
 import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
@@ -147,6 +148,24 @@ fun AlertDialog.onPositive(
     }
     this.yesButton.text = text.trim()
     this.yesButton.setOnClickListener {
+        action?.invoke()
+        dismiss()
+    }
+    return this
+}
+
+/***
+ * Close button Properties For Alert Dialog
+ * */
+fun AlertDialog.onClose(
+    buttonColor: Int? = null,
+    action: (() -> Unit)? = null
+): AlertDialog {
+    this.closeButton.show()
+    if (buttonColor != null) {
+        this.closeButton.setColorFilter(buttonColor, PorterDuff.Mode.MULTIPLY)
+    }
+    this.closeButton.setOnClickListener {
         action?.invoke()
         dismiss()
     }

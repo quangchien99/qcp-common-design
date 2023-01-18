@@ -18,35 +18,11 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
-      - name: Setup ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
+      - name: Build Gradle
+        run: ./gradlew build
 
-      - name: Caching ruby dependencies
-        uses: actions/cache@v2
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2
         with:
-          path: 'vendor/bundle'
-          key: ${{ runner.os }}-gems-${{ secrets.GEMS_CACHE_VERSION }}-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-      - name: Caching Gradle packages
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-      - name: Install dependencies to support ruby project
-        run: |
-          bundle config --global set deploy_platform_default x86_64-linux
-          bundle install
-      - name: Build and distribute app
-        run: |
-          export LC_ALL=en_US.UTF-8
-          export LANG=en_US.UTF-8
-          git config user.email ${{github.event.pusher.email}}
-          git config user.name ${{github.event.pusher.name}}
-          bundle exec fastlane build_and_distribute
+          name: app
+          path: app/build/outputs/apk/debug/app-debug.apk
